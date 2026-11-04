@@ -1,0 +1,598 @@
+# Photography Editing Services — HTML Program
+
+Save the following code as `index.html`.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photography Editing Services</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    background: #f8f5f0;
+    color: #28252c;
+}
+
+/* NAVBAR */
+header {
+    background: #f8f5f0;
+    padding: 22px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #e7dfd5;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #7b61a8;
+}
+
+nav a {
+    text-decoration: none;
+    color: #28252c;
+    margin-left: 25px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #7b61a8;
+}
+
+/* HERO SECTION */
+.hero {
+    min-height: 85vh;
+    padding: 70px 8%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 50px;
+}
+
+.hero-text span {
+    color: #7b61a8;
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 13px;
+}
+
+.hero-text h1 {
+    font-size: 65px;
+    line-height: 1.1;
+    margin: 25px 0;
+}
+
+.hero-text h1 em {
+    color: #7b61a8;
+    font-family: Georgia, serif;
+}
+
+.hero-text p {
+    color: #777;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.btn {
+    background: #7b61a8;
+    color: white;
+    padding: 14px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #5e4787;
+    transform: translateY(-3px);
+}
+
+.hero-image img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 180px 180px 20px 20px;
+    box-shadow: 15px 15px 0 #ded2ed;
+}
+
+/* GENERAL SECTION */
+section {
+    padding: 80px 8%;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-heading span {
+    color: #7b61a8;
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.section-heading h2 {
+    font-size: 42px;
+    margin-top: 15px;
+}
+
+/* SERVICES */
+.services {
+    background: #eee7f5;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.service-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    transition: 0.3s;
+    border: 1px solid #e5d8f0;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px #d4c5e5;
+}
+
+.service-card .icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.service-card h3 {
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    color: #777;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.price {
+    display: block;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #7b61a8;
+    font-size: 20px;
+}
+
+/* PORTFOLIO */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 18px;
+    transition: 0.4s;
+}
+
+.gallery img:hover {
+    transform: scale(1.03);
+}
+
+/* PREVIEW */
+.preview {
+    background: #28252c;
+    color: white;
+    text-align: center;
+}
+
+.preview .section-heading h2 {
+    color: white;
+}
+
+.preview-box {
+    max-width: 750px;
+    margin: auto;
+}
+
+.preview-box img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.preview-box input {
+    width: 80%;
+    margin-top: 30px;
+    accent-color: #b69be3;
+}
+
+.preview-box p {
+    margin-top: 15px;
+    color: #d4c5e5;
+}
+
+/* BOOKING */
+.booking {
+    background: #eee7f5;
+}
+
+.booking-container {
+    max-width: 650px;
+    margin: auto;
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px #d8cde5;
+}
+
+.booking-container input,
+.booking-container select,
+.booking-container textarea {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-family: inherit;
+}
+
+.booking-container textarea {
+    resize: vertical;
+}
+
+.total {
+    background: #f3edf9;
+    padding: 18px;
+    border-radius: 10px;
+    margin: 15px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #7b61a8;
+}
+
+#message {
+    color: #4a8b5b;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* FOOTER */
+footer {
+    background: #28252c;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+footer span {
+    color: #b69be3;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-text h1 {
+        font-size: 48px;
+    }
+
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 0 8px;
+    }
+
+    .service-grid,
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-text h1 {
+        font-size: 40px;
+    }
+
+    .hero-image img {
+        height: 350px;
+    }
+
+    .booking-container {
+        padding: 25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<header>
+    <div class="logo">LAVENDER STUDIO ✦</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#booking">Booking</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="hero-text">
+        <span>CREATIVE PHOTO EDITING STUDIO</span>
+
+        <h1>Make every<br>photo feel<br><em>magical.</em></h1>
+
+        <p>
+            We transform ordinary photographs into extraordinary
+            visual stories. From elegant retouching to artistic
+            color grading, every image deserves perfection.
+        </p>
+
+        <a href="#services" class="btn">Explore Services →</a>
+    </div>
+
+    <div class="hero-image">
+        <img src="portrait.webp"
+             alt="Portrait photography">
+    </div>
+
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+
+    <div class="section-heading">
+        <span>WHAT WE DO</span>
+        <h2>Our Creative Services</h2>
+    </div>
+
+    <div class="service-grid">
+
+        <div class="service-card">
+            <div class="icon">✨</div>
+            <h3>Portrait Retouching</h3>
+            <p>Professional portrait enhancement with natural and elegant finishing.</p>
+            <span class="price">₹300 / image</span>
+        </div>
+
+        <div class="service-card">
+            <div class="icon">🖼️</div>
+            <h3>Background Removal</h3>
+            <p>Clean and precise background removal for professional photographs.</p>
+            <span class="price">₹200 / image</span>
+        </div>
+
+        <div class="service-card">
+            <div class="icon">🎨</div>
+            <h3>Color Grading</h3>
+            <p>Beautiful color tones that create cinematic visual experiences.</p>
+            <span class="price">₹250 / image</span>
+        </div>
+
+        <div class="service-card">
+            <div class="icon">📸</div>
+            <h3>Photo Restoration</h3>
+            <p>Restore old photographs and improve their visual quality.</p>
+            <span class="price">₹500 / image</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+
+    <div class="section-heading">
+        <span>OUR CREATIONS</span>
+        <h2>Selected Portfolio</h2>
+    </div>
+
+    <div class="gallery">
+
+        <img src="port edit.jpg"
+             alt="Portrait editing">
+
+        <img src="fashion.jpg"
+             alt="Fashion photography">
+
+        <img src="creative.avif"
+             alt="Creative photography">
+
+        <img src="nature.jpg"
+             alt="Nature editing">
+
+        <img src="por.jpg"
+             alt="Portrait retouching">
+
+        <img src="professional.jpg"
+             alt="Professional portrait">
+
+    </div>
+</section>
+
+<!-- EDITING PREVIEW -->
+<section class="preview">
+
+    <div class="section-heading">
+        <span>EDITING PREVIEW</span>
+        <h2>Discover the Difference</h2>
+    </div>
+
+    <div class="preview-box">
+
+        <img id="previewImage"
+             src="preww.jpg"
+             alt="Photo editing preview">
+
+        <input type="range" min="0" max="500" value="100"
+               id="editSlider">
+
+        <p>Move the slider to explore different editing effects.</p>
+
+    </div>
+
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+
+    <div class="section-heading">
+        <span>LET'S CREATE</span>
+        <h2>Book Your Editing</h2>
+    </div>
+
+    <div class="booking-container">
+
+        <form id="bookingForm">
+
+            <input type="text" id="name"
+                   placeholder="Your Full Name" required>
+
+            <input type="email" id="email"
+                   placeholder="Your Email Address" required>
+
+            <select id="service" required>
+                <option value="">Select a Service</option>
+                <option value="300">Portrait Retouching - ₹300</option>
+                <option value="200">Background Removal - ₹200</option>
+                <option value="250">Color Grading - ₹250</option>
+                <option value="500">Photo Restoration - ₹500</option>
+            </select>
+
+            <input type="number" id="quantity"
+                   placeholder="Number of Images" min="1" value="1" required>
+
+            <textarea id="details" rows="4"
+                      placeholder="Describe your project"></textarea>
+
+            <div class="total">
+                Total Estimated Price: ₹<span id="totalPrice">0</span>
+            </div>
+
+            <button type="submit" class="btn">
+                Submit Booking →
+            </button>
+
+            <p id="message"></p>
+
+        </form>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 <span>Lavender Studio</span> | Photography Editing Services</p>
+    <p>Creativity • Quality • Perfection</p>
+</footer>
+
+<script>
+
+// PRICE CALCULATOR
+const service = document.getElementById("service");
+const quantity = document.getElementById("quantity");
+const totalPrice = document.getElementById("totalPrice");
+
+function calculatePrice() {
+
+    let servicePrice = Number(service.value);
+    let imageCount = Number(quantity.value);
+
+    if (imageCount < 1 || !Number.isFinite(imageCount)) {
+        imageCount = 1;
+    }
+
+    let total = servicePrice * imageCount;
+
+    totalPrice.textContent = total;
+}
+
+service.addEventListener("change", calculatePrice);
+quantity.addEventListener("input", calculatePrice);
+
+// IMAGE EDITING PREVIEW
+const editSlider = document.getElementById("editSlider");
+const previewImage = document.getElementById("previewImage");
+
+editSlider.addEventListener("input", function() {
+
+    let value = editSlider.value;
+
+    previewImage.style.filter =
+        "brightness(" + (0.6 + value / 125) + ")" +
+        " saturate(" + (value / 50) + ")";
+
+});
+
+// BOOKING FORM
+const bookingForm = document.getElementById("bookingForm");
+const message = document.getElementById("message");
+
+bookingForm.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    let customerName = document.getElementById("name").value;
+    let selectedService = service.options[service.selectedIndex].text;
+    let total = totalPrice.textContent;
+
+    message.textContent =
+        "Thank you, " + customerName +
+        "! Your request for " + selectedService +
+        " has been submitted. Estimated price: ₹" + total;
+
+    bookingForm.reset();
+
+    calculatePrice();
+});
+
+calculatePrice();
+
+</script>
+
+</body>
+</html>
+```
